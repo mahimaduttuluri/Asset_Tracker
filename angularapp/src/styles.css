@@ -1,1 +1,60 @@
-/* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600;700&display=swap');
+
+/* ===============================
+   BASE / LIGHT THEME (DEFAULT)
+   =============================== */
+
+:root {
+  /* Backgrounds */
+  --bg-app: #f6f8fb;
+  --bg-card: #ffffff;
+  --bg-hover: #fff8e1;
+
+  /* Borders */
+  --border-default: #e0e0e0;
+  --border-light: #eeeeee;
+
+  /* Text */
+  --text-primary: #333333;
+  --text-secondary: #666666;
+
+  /* Brand */
+  --primary-yellow: #ffc238;
+  --primary-blue: #003f72;
+
+  /* Status */
+  --danger: #e53935;
+  --success: #388e3c;
+}
+
+/* ===============================
+   DARK THEME
+   =============================== */
+
+[data-theme="dark"] {
+  --bg-app: #0f172a;
+  --bg-card: #1e293b;
+  --bg-hover: #243447;
+
+  --border-default: #334155;
+  --border-light: #475569;
+
+  --text-primary: #f8fafc;
+  --text-secondary: #cbd5e1;
+
+  --danger: #ff575c;
+  --success: #62b257;
+}
+
+/* ===============================
+   GLOBAL RESET
+   =============================== */
+
+html, body {
+  height: 100%;
+  margin: 0;
+  overflow: hidden;
+  font-family: 'Rubik', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background: var(--bg-app);
+  color: var(--text-primary);
+}
