@@ -1,0 +1,30 @@
+<aside class="side-nav" [class.collapsed]="!isSideNavOpen">
+
+  <div class="side-nav-header">
+    <span *ngIf="isSideNavOpen">Asset Insight</span>
+    <button class="toggle-btn" (click)="toggleSideNav()">☰</button>
+  </div>
+
+  <nav class="nav-links">
+    <a routerLink="/dashboard" routerLinkActive="active">
+      🏠 <span *ngIf="isSideNavOpen">Dashboard</span>
+    </a>
+
+    <a routerLink="/onboarding" routerLinkActive="active">
+      ➕ <span *ngIf="isSideNavOpen">Onboarding</span>
+    </a>
+
+    <a routerLink="/asset-insights" routerLinkActive="active">
+      📊 <span *ngIf="isSideNavOpen">Asset Insights</span>
+    </a>
+
+    <a routerLink="/live-tracking" routerLinkActive="active">
+      📍 <span *ngIf="isSideNavOpen">Live Tracking</span>
+    </a>
+
+    <a routerLink="/profile" routerLinkActive="active">
+      👤 <span *ngIf="isSideNavOpen">Profile</span>
+    </a>
+  </nav>
+
+</aside>

@@ -1,0 +1,135 @@
+<div class="dashboard-layout">
+
+  
+  <!-- SIDE NAV COMPONENT -->
+  <app-side-nav></app-side-nav>
+
+  <!-- MAIN CONTENT -->
+  <div class="dashboard-content">
+
+<!-- HEADER -->
+    <div class="header">
+      <h2>Asset Insight</h2>
+        <button class="theme-toggle" title="Toggle Theme" (click)="toggleTheme()">🌙</button>
+      <div class="user-profile">
+        <div class="user-avatar">JD</div>
+        <div class="user-info">
+          <div class="user-name">John Doe</div>
+          <div class="user-role">Admin</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ASSET TYPE CONTAINER -->
+    <div class="asset-type-container">
+      <h4>Asset types</h4>
+      <div class="asset-cards">
+
+        <div class="asset-card" *ngFor="let asset of assetSummary">
+
+            <div class="asset-icon-wrapper">
+            <img
+                [src]="asset.icon"
+                [alt]="asset.nameLine1 + ' ' + asset.nameLine2"
+                class="asset-icon"
+            />
+            </div>
+
+            <div class="asset-title">
+            <div>{{ asset.nameLine1 }}</div>
+            <div>{{ asset.nameLine2 }}</div>
+            </div>
+
+            <div class="asset-count">
+            <span class="count">{{ asset.count }}</span>
+            <span class="total">/{{ asset.total }}</span>
+            </div>
+
+        </div>
+
+      </div>
+    </div>
+
+
+    <!-- CONTENT GRID -->
+    <div class="content-grid">
+
+      <!-- LEFT - WATCHLIST -->
+      <div class="section-card watchlist-card">
+        <h4>Watchlist <span class="watchlist-count">(3)</span></h4>
+        <div class="watchlist-mini-cards">
+          <div class="mini-card">
+            <div class="mini-card-header">Batching Plants</div>
+            <div class="mini-card-detail danger">Not Working - 12/36</div>
+          </div>
+          <div class="mini-card">
+            <div class="mini-card-header">Wheel Loader - 3.5 Cum</div>
+            <div class="mini-card-detail">Not utilized - 33 Days</div>
+          </div>
+          <div class="mini-card">
+            <div class="mini-card-header">Cement-Grade</div>
+            <div class="mini-card-detail">75%</div>
+          </div>
+          <div class="mini-card add-card">
+            <button class="add-to-watchlist-btn">+</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- RIGHT - ALERTS -->
+      <div class="section-card">
+        <h4>Alerts</h4>
+        <div class="alert-item" *ngFor="let alert of alerts">
+          <strong>{{ alert.asset }}</strong>
+          <div class="alert-text">Not reporting from {{ alert.days }} days</div>
+        </div>
+      </div>
+
+      <!-- FOOTER STATUS TABS -->
+  <div class="footer-tabs">
+
+    <div class="footer-tab">
+      <div class="footer-icon not-operating"></div>
+      <div class="footer-text">
+        <div class="footer-label">Not Operating</div>
+        <div class="footer-value">947 <span>(+83)</span></div>
+      </div>
+    </div>
+
+    <div class="footer-tab">
+      <div class="footer-icon idle-assets"></div>
+      <div class="footer-text">
+        <div class="footer-label">Idle Assets</div>
+        <div class="footer-value">17 <span>(+6)</span></div>
+      </div>
+    </div>
+
+    <div class="footer-tab">
+      <div class="footer-icon not-reporting"></div>
+      <div class="footer-text">
+        <div class="footer-label">Not Reporting</div>
+        <div class="footer-value">115 <span>(+83)</span></div>
+      </div>
+    </div>
+
+    <div class="footer-tab">
+      <div class="footer-icon surplus"></div>
+      <div class="footer-text">
+        <div class="footer-label">Surplus</div>
+        <div class="footer-value">73 <span>(+2)</span></div>
+      </div>
+    </div>
+
+    <div class="footer-tab">
+      <div class="footer-icon breakdown"></div>
+      <div class="footer-text">
+        <div class="footer-label">Breakdown</div>
+        <div class="footer-value">73 <span>(+2)</span></div>
+      </div>
+    </div>
+
+  </div>
+
+    </div>
+  </div>
+</div>
