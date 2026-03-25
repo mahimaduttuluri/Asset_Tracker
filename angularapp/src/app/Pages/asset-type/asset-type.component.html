@@ -1,0 +1,187 @@
+<div class="page">
+  <!-- List View -->
+  <div class="list-section" *ngIf="!showForm()">
+    <div class="header">
+      <h1>Asset Types</h1>
+      <button class="add-btn primary" (click)="toggleForm()">+ Add Asset Type</button>
+    </div>
+
+    <div class="table-container">
+      <table>
+        <thead>
+          <tr>
+            <th>Asset Type</th>
+            <th>Asset Code</th>
+            <th>Equipment Category</th>
+            <th>Criticality</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let asset of assetTypes()">
+            <td>{{ asset.Asset_Type }}</td>
+            <td>{{ asset.Asset_Code }}</td>
+            <td>{{ asset.EquipmentCategory_Key || '—' }}</td>
+            <td>
+              <span class="pill" [class.critical]="asset.Is_Critical_Flag === 1">
+                {{ asset.Criticality }}
+              </span>
+            </td>
+            <td>
+              <button (click)="edit(asset)" class="btn small">Edit</button>
+              <button (click)="delete(asset.Asset_Type_Key)" class="btn small danger">Delete</button>
+            </td>
+          </tr>
+          <tr *ngIf="assetTypes().length === 0">
+            <td colspan="5">No asset types found. <button (click)="toggleForm()">Create first one</button></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Form Modal -->
+  <div class="overlay" *ngIf="showForm()">
+    <div class="modal">
+
+    <!-- Header -->
+<div class="header">
+    <div class="progress-wrapper">...</div>
+    <div class="divider"></div>
+
+      <div>
+        <h2><strong>Asset Type Configuration</strong></h2>
+      </div>
+
+      <div class="header-right">
+        <span class="required">* Required Fields</span>
+        <span class="close" (click)="toggleForm()">✕</span>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <form [formGroup]="assetTypeForm">
+
+      <div class="row">
+        <label>Asset Type *</label>
+        <input formControlName="Asset_Type" placeholder="Asset Type" />
+      </div>
+
+      <div class="row">
+        <label>Asset Code *</label>
+        <input formControlName="Asset_Code" placeholder="Asset Code" />
+      </div>
+
+      <div class="row">
+        <label>Short Code</label>
+        <input formControlName="ShortCode" placeholder="Short Code" />
+      </div>
+
+      <div class="row">
+        <label>Equipment Category *</label>
+        <input formControlName="EquipmentCategory" placeholder="Equipment Category" />
+      </div>
+
+      <!-- ✅ Expected Hours -->
+      <div class="row">
+        <label>Expected Hours</label>
+        <div>
+          <div class="grid-4">
+            <input placeholder="Working" formControlName="Exp_Working_Hrs" />
+            <input placeholder="Idle" formControlName="Exp_Idle_Hrs" />
+            <input placeholder="OFF" formControlName="Exp_OFF_Hrs" />
+            <input placeholder="Runtime" formControlName="Exp_Runtime_Hrs" />
+          </div>
+        </div>
+      </div>
+
+      <!-- ✅ Fuel Burn Rate -->
+      <div class="row">
+        <label>Fuel Burn Rate</label>
+        <div>
+          <div class="grid-3">
+            <input placeholder="Idle" formControlName="Exp_IdleFuelBurnRate" />
+            <input placeholder="Working" formControlName="Exp_WorkingFuelBurnRate" />
+            <input placeholder="Runtime" formControlName="Exp_RuntimeFuelBurnRate" />
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <label>Engine Oil Pressure</label>
+        <div>
+          <div class="grid-2">
+            <input placeholder="LTL" formControlName="Engine_Oil_Pressure_LTL" />
+            <input placeholder="UTL" formControlName="Engine_Oil_Pressure_UTL" />
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <label>Transmission Temp</label>
+        <div>
+          <div class="grid-2">
+            <input placeholder="LTL" formControlName="Transmission_Temperature_LTL" />
+            <input placeholder="UTL" formControlName="Transmission_Temperature_UTL" />
+          </div>
+        </div>
+      </div>
+
+      <!-- ✅ Benchmarks -->
+      <div class="row">
+        <label>Benchmarks</label>
+        <div>
+          <div class="grid-2">
+            <input placeholder="KW Hours Benchmark" formControlName="KW_Hours_Benchmark" />
+            <input placeholder="Average RPM" formControlName="Average_RPM" />
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <label>Criticality</label>
+        <div>
+          <div class="grid-2">
+            <select formControlName="Is_Critical_Flag">
+              <option value="0">Non-Critical</option>
+              <option value="1">Critical</option>
+            </select>
+
+            <select formControlName="Criticality">
+              <option>Low</option>
+              <option selected>Medium</option>
+              <option>High</option>
+              <option>Critical</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <label>Dashboard URL</label>
+        <input formControlName="DashboardURL" placeholder="https://dashboard-url" />
+      </div>
+
+      <div class="actions">
+        <button class="save" type="button" (click)="save()">Save</button>
+        <button class="cancel" type="button" (click)="onCancel()">Cancel</button>
+      </div>
+      
+<!-- ✅ FORM COMPLETION PROGRESS -->
+<div class="progress-wrapper">
+  <div class="progress-label">
+    Form Completion: {{ completionPercent }}%
+  </div>
+
+  <div class="progress-track">
+    <div
+      class="progress-fill"
+      [style.width.%]="completionPercent">
+    </div>
+  </div>
+</div>
+
+    </form>
+  </div>
+</div>
