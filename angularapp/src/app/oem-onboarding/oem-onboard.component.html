@@ -1,0 +1,214 @@
+<div *ngIf="formOnly" class="form-card">
+    <div class="header">
+      <div class="divider"></div>
+
+      <div>
+        <h2><strong>OEM Onboarding Configuration</strong></h2>
+      </div>
+
+      <div class="header-right">
+        <span class="required">* Required Fields</span>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <form [formGroup]="oemForm">
+
+      <div class="row">
+        <label>OEM Key *</label>
+        <input formControlName="OEM_Key" placeholder="OEM Key" />
+      </div>
+
+      <div class="row">
+        <label>OEM Provider *</label>
+        <input formControlName="OEM_Provider" placeholder="OEM Provider" />
+      </div>
+
+      <div class="row">
+        <label>OEM Provider Name</label>
+        <input formControlName="OEM_ProviderName" placeholder="OEM Provider Name" />
+      </div>
+
+      <div class="row">
+        <label>OEM Description</label>
+        <input formControlName="OEM_Description" placeholder="OEM Description" />
+      </div>
+
+      <div class="row">
+        <label>History Table Name</label>
+        <input formControlName="History_TableName" placeholder="History Table Name" />
+      </div>
+
+      <div class="row">
+        <label>Productivity Table Name</label>
+        <input formControlName="Productivity_TableName" placeholder="Productivity Table Name" />
+      </div>
+
+      <div class="row">
+        <label>Is Solution</label>
+        <select formControlName="Is_Solution">
+          <option value="">Select</option>
+          <option value="true">Yes</option>
+          <option value="false">No</option>
+        </select>
+      </div>
+
+      <div class="row">
+        <label>Is For Live Tracking</label>
+        <select formControlName="Is_ForLiveTracking">
+          <option value="">Select</option>
+          <option value="true">Yes</option>
+          <option value="false">No</option>
+        </select>
+      </div>
+
+      <div class="row">
+        <label>Asset ID Column Name</label>
+        <input formControlName="AssetIdColumnName" placeholder="Asset ID Column Name" />
+      </div>
+
+      <div class="row">
+        <label>CCode Column Name</label>
+        <input formControlName="CCodeColumnName" placeholder="CCode Column Name" />
+      </div>
+
+      <div class="row">
+        <label>Instance Time Column Name</label>
+        <input formControlName="InstanceTimeColumnName" placeholder="Instance Time Column Name" />
+      </div>
+
+      <div class="row">
+        <label>Instance Date Column Name</label>
+        <input formControlName="InstanceDateColumnName" placeholder="Instance Date Column Name" />
+      </div>
+
+      <div class="row">
+        <label>Work Done UOM</label>
+        <input formControlName="WorkDoneUOM" placeholder="Work Done UOM" />
+      </div>
+
+      <div class="row">
+        <label>Application Name</label>
+        <input formControlName="APPLICATION_NAME" placeholder="Application Name" />
+      </div>
+
+      <div class="row">
+        <label>Asset Sub Category</label>
+        <input formControlName="AssetSubCategory" placeholder="Asset Sub Category" />
+      </div>
+
+      <div class="actions">
+        <button class="save" type="button" (click)="onSave()">Save</button>
+        <button class="cancel" type="button" (click)="onCancel()">Cancel</button>
+      </div>
+
+    </form>
+  </div>
+
+  <!-- Modal for full page mode -->
+  <div *ngIf="!formOnly" class="overlay">
+    <div class="modal">
+      <!-- Header -->
+      <div class="header">
+        <h2>OEM Onboarding Configuration</h2>
+        <div class="header-right">
+          <span class="required">* Required Fields</span>
+          <span class="close" (click)="onCancel()">✕</span>
+        </div>
+      </div>
+
+      <div class="divider"></div>
+
+      <form [formGroup]="oemForm">
+        <!-- Same form fields as above -->
+        <div class="row">
+          <label>OEM Key *</label>
+          <input formControlName="OEM_Key" placeholder="OEM Key" />
+        </div>
+
+        <div class="row">
+          <label>OEM Provider *</label>
+          <input formControlName="OEM_Provider" placeholder="OEM Provider" />
+        </div>
+
+        <div class="row">
+          <label>OEM Provider Name</label>
+          <input formControlName="OEM_ProviderName" placeholder="OEM Provider Name" />
+        </div>
+
+        <div class="row">
+          <label>OEM Description</label>
+          <input formControlName="OEM_Description" placeholder="OEM Description" />
+        </div>
+
+        <div class="row">
+          <label>History Table Name</label>
+          <input formControlName="History_TableName" placeholder="History Table Name" />
+        </div>
+
+        <div class="row">
+          <label>Productivity Table Name</label>
+          <input formControlName="Productivity_TableName" placeholder="Productivity Table Name" />
+        </div>
+
+        <div class="row">
+          <label>Is Solution</label>
+          <select formControlName="Is_Solution">
+            <option value="">Select</option>
+            <option value="true">Yes</option>
+            <option value="false">No</option>
+          </select>
+        </div>
+
+        <div class="row">
+          <label>Is For Live Tracking</label>
+          <select formControlName="Is_ForLiveTracking">
+            <option value="">Select</option>
+            <option value="true">Yes</option>
+            <option value="false">No</option>
+          </select>
+        </div>
+
+        <div class="row">
+          <label>Asset ID Column Name</label>
+          <input formControlName="AssetIdColumnName" placeholder="Asset ID Column Name" />
+        </div>
+
+        <div class="row">
+          <label>CCode Column Name</label>
+          <input formControlName="CCodeColumnName" placeholder="CCode Column Name" />
+        </div>
+
+        <div class="row">
+          <label>Instance Time Column Name</label>
+          <input formControlName="InstanceTimeColumnName" placeholder="Instance Time Column Name" />
+        </div>
+
+        <div class="row">
+          <label>Instance Date Column Name</label>
+          <input formControlName="InstanceDateColumnName" placeholder="Instance Date Column Name" />
+        </div>
+
+        <div class="row">
+          <label>Work Done UOM</label>
+          <input formControlName="WorkDoneUOM" placeholder="Work Done UOM" />
+        </div>
+
+        <div class="row">
+          <label>Application Name</label>
+          <input formControlName="APPLICATION_NAME" placeholder="Application Name" />
+        </div>
+
+        <div class="row">
+          <label>Asset Sub Category</label>
+          <input formControlName="AssetSubCategory" placeholder="Asset Sub Category" />
+        </div>
+
+        <div class="actions">
+          <button class="save" type="button" (click)="onSave()">Save</button>
+          <button class="cancel" type="button" (click)="onCancel()">Cancel</button>
+        </div>
+      </form>
+    </div>
+  </div>

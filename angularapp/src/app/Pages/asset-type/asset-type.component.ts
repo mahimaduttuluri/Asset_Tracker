@@ -1,4 +1,4 @@
-import { Component, inject, signal, effect, OnInit, computed } from '@angular/core';
+import { Component, Input, inject, signal, effect, computed } from '@angular/core';
 import { firstValueFrom } from 'rxjs';
 import { AssetType, AssetTypeUpsert } from './asset-type.model';
 import { AssetTypeService } from './asset-type.service';
@@ -17,6 +17,7 @@ import { CommonModule } from '@angular/common';
   styleUrls: ['./asset-type.component.css']
 })
 export class AssetTypeComponent {
+  @Input() formOnly = false;
   showForm = signal(false);
 
   toggleForm() {
@@ -67,8 +68,14 @@ export class AssetTypeComponent {
     });
 
     effect(() => {
-      if (!this.showForm()) {
+      if (!this.showForm() && !this.formOnly) {
         this.load();
+      }
+    });
+
+    effect(() => {
+      if (this.formOnly) {
+        this.showForm.set(true);
       }
     });
   }

@@ -1,11 +1,8 @@
-# Task: Make "Add Asset Type" form display inline like "Add Asset"
+# OEM Onboarding Tab Fix - Progress Tracker
 
-## Plan Steps
-- [ ] Step 1: Add route for asset-types in app.routes.ts
-- [ ] Step 2: Update asset-type.component.ts with showForm signal and toggle logic
-- [x] Step 3: Update asset-type.component.html with list table and Add button
-- [x] Step 4: Add Asset Types link to side-nav.html
-- [x] Step 5: Test navigation and inline form (minor fixes applied)
+## Approved Plan Steps:
+- [✅] Step 1: Edit oem-onboard.component.html to use inline form-card structure for formOnly=true (match asset-type)
+- [ ] Step 2: Test in browser: Navigate /onboarding → click OEM Onboarding tab → verify renders inline like asset-type (no modal/overlay look)
+- [ ] Step 3: Complete task
 
-**Progress:** Steps 1-4 complete ✅ Ready for testing (Step 5)
-
+**Status:** Step 1 complete, ready for testing

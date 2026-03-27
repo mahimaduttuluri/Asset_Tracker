@@ -54,167 +54,21 @@
     <!-- TAB CONTENT -->
 
       <div *ngIf="activeTab === 'oem'">
-        <h3>OEM Onboarding</h3>
-        <!-- OEM form here -->
+        <app-oem-onboard [formOnly]="true"></app-oem-onboard>
       </div>
 
-      <div *ngIf="activeTab === 'asset-type'">
-        <app-asset-type></app-asset-type>
-      </div>
+      <div *ngIf="activeTab === 'asset-type'" class="form-card">
+    <!---Asset-type form rendering -->
+    <app-asset-type [formOnly]="true"></app-asset-type>
+    </div>
 
       <div *ngIf="activeTab === 'gateway'">
         <h3>Gateway Onboarding</h3>
       </div>
 
-      <div *ngIf="activeTab === 'asset'" class="form-card">
-
-    <!-- HEADER -->
-    <div class="form-header">
-        <div>
-        <h3>Add Asset</h3>
-        <p class="sub-text">* Required fields</p>
-        </div>
-    </div>
-
-    <form class="asset-form">
-
-        <!-- BASIC INFO -->
-        <h4 class="section-title">Basic Information</h4>
-        <div class="form-grid">
-        <div class="form-field">
-            <label>Asset ID *</label>
-            <input type="text" placeholder="Asset ID" />
-        </div>
-
-        <div class="form-field">
-            <label>Asset Name *</label>
-            <input type="text" placeholder="Asset name" />
-        </div>
-
-        <div class="form-field">
-            <label>Asset Code *</label>
-            <input type="text" placeholder="Asset code" />
-        </div>
-
-        <div class="form-field">
-            <label>Asset Type *</label>
-            <select>
-            <option>Select asset type</option>
-            </select>
-        </div>
-
-        <div class="form-field">
-            <label>Asset Capacity</label>
-            <input type="number" />
-        </div>
-
-        <div class="form-field">
-            <label>Registration No</label>
-            <input type="text" />
-        </div>
-        </div>
-
-        <!-- MANUFACTURER -->
-        <h4 class="section-title">Manufacturer & OEM</h4>
-        <div class="form-grid">
-        <div class="form-field">
-            <label>Product Name</label>
-            <input type="text" />
-        </div>
-
-        <div class="form-field">
-            <label>Manufacturer Year</label>
-            <input type="number" />
-        </div>
-
-        <div class="form-field">
-            <label>OEM</label>
-            <select>
-            <option>Select OEM</option>
-            </select>
-        </div>
-        </div>
-
-        <!-- FUEL & DEVICE -->
-        <h4 class="section-title">Fuel & Device</h4>
-        <div class="form-grid">
-        <div class="form-field">
-            <label>Fuel Type</label>
-            <input type="text" />
-        </div>
-
-        <div class="form-field">
-            <label>Device Type</label>
-            <input type="text" />
-        </div>
-
-        <div class="form-field">
-            <label>Energy Meter Type</label>
-            <input type="text" />
-        </div>
-
-        <div class="form-field">
-            <label>AIS Fuel</label>
-            <input type="text" />
-        </div>
-        </div>
-
-        <!-- DATES -->
-        <h4 class="section-title">Dates</h4>
-        <div class="form-grid">
-        <div class="form-field">
-            <label>Onboarded Date</label>
-            <input type="date" />
-        </div>
-
-        <div class="form-field">
-            <label>Last Maintained</label>
-            <input type="date" />
-        </div>
-
-        <div class="form-field">
-            <label>Job Start Date</label>
-            <input type="date" />
-        </div>
-
-        <div class="form-field">
-            <label>Job End Date</label>
-            <input type="date" />
-        </div>
-        </div>
-
-        <!-- TRACKING -->
-        <h4 class="section-title">Tracking & Status</h4>
-        <div class="form-grid">
-        <div class="form-field">
-            <label>Serial Number</label>
-            <input type="text" />
-        </div>
-
-        <div class="form-field">
-            <label>IMEI Number</label>
-            <input type="text" />
-        </div>
-
-        <div class="form-field">
-            <label>Expected Working Hours</label>
-            <input type="number" />
-        </div>
-
-        <div class="form-field">
-            <label>Time Zone</label>
-            <input type="text" />
-        </div>
-        </div>
-
-        <!-- ACTIONS -->
-        <div class="form-actions">
-        <button type="submit" class="btn-primary">Save</button>
-        <button type="button" class="btn-secondary">Cancel</button>
-        </div>
-
-    </form>
-    </div>
+<div *ngIf="activeTab === 'asset'" >
+    <app-asset-onboarding></app-asset-onboarding>
+  </div>
 
     </div>
 
