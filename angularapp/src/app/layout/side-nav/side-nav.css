@@ -1,0 +1,67 @@
+
+.side-nav {
+  width: 90px;
+  height: 100vh;
+  background: var(--bg-nav);
+  box-shadow: 2px 0 10px rgba(0, 0, 0, 0.08);
+  border-radius: 0 0 30px 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 10px;
+}
+
+
+/* Close button */
+.close-btn {
+  font-size: 22px;
+  color: #4a6fa5;
+  cursor: pointer;
+  margin-bottom: 30px;
+}
+
+/* Nav container */
+.nav-links {
+  display: flex;
+  flex-direction: column;
+  gap: 35px;
+}
+
+/* Nav item */
+.nav-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  color: #7fa3c7;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+/* Icons */
+.nav-item .icon {
+  font-size: 26px;
+  margin-bottom: 6px;
+}
+
+/* Active state */
+a.active .nav-item {
+  color: #4a6fa5;
+  font-weight: 500;
+}
+
+/* Remove default anchor styling */
+a {
+  text-decoration: none;
+}
+.menu-btn {
+  position: fixed;
+  top: 15px;
+  left: 15px;
+  font-size: 22px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: #4a6fa5;
+  z-index: 1000;
+}

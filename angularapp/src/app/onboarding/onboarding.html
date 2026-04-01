@@ -1,0 +1,75 @@
+  <div class="dashboard-layout">
+
+  <app-side-nav></app-side-nav>
+
+  <div class="dashboard-content">
+
+    <div class="header">
+      <h2>Onboarding</h2>
+      <div>
+        <div class="user-profile">
+          <div class="user-avatar">JD</div>
+          <div class="user-info">
+            <div class="user-name">John Doe</div>
+            <div class="user-role">Admin</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TABS -->
+    <!-- TABS - TYPE 1 -->
+    <div class="type1-tabs">
+
+    <button
+        class="type1-tab"
+        [class.active]="activeTab === 'oem'"
+        (click)="setTab('oem')">
+        OEM Onboarding
+    </button>
+
+    <button
+        class="type1-tab"
+        [class.active]="activeTab === 'asset-type'"
+        (click)="setTab('asset-type')">
+        Add Asset Type
+    </button>
+
+    <button
+        class="type1-tab"
+        [class.active]="activeTab === 'gateway'"
+        (click)="setTab('gateway')">
+        Gateway Onboarding
+    </button>
+
+    <button
+        class="type1-tab"
+        [class.active]="activeTab === 'asset'"
+        (click)="setTab('asset')">
+        Add Asset
+    </button>
+
+    </div>
+
+    <!-- TAB CONTENT -->
+
+      <div *ngIf="activeTab === 'oem'">
+        <app-oem-onboard [formOnly]="true"></app-oem-onboard>
+      </div>
+
+      <div *ngIf="activeTab === 'asset-type'" class="form-card">
+    <!---Asset-type form rendering -->
+    <app-asset-type [formOnly]="true"></app-asset-type>
+    </div>
+
+      <div *ngIf="activeTab === 'gateway'">
+        <h3>Gateway Onboarding</h3>
+      </div>
+
+<div *ngIf="activeTab === 'asset'" >
+    <app-asset-onboarding></app-asset-onboarding>
+  </div>
+
+    </div>
+
+  </div>
