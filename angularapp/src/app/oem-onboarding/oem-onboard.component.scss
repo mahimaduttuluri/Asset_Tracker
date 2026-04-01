@@ -1,0 +1,138 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap');
+
+* {
+  box-sizing: border-box;
+  font-family: 'Inter', sans-serif;
+}
+
+.progress-wrapper {
+  margin-top: 12px;
+  margin-bottom: 10px;
+}
+
+.progress-label {
+  font-size: 12px;
+  font-weight: 500;
+  color: #6b7c87;
+  margin-bottom: 6px;
+}
+
+.progress-track {
+  width: 100%;
+  height: 8px;
+  background: #f1f1f1;
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #ffc233, #ffd98a);
+  border-radius: 6px;
+  transition: width 0.3s ease;
+}
+
+.row {
+  display: grid;
+  grid-template-columns: 150px 1fr;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+label {
+  font-size: 14px;
+  color: #2f3a40;
+}
+
+input, select {
+  height: 42px;
+  padding: 0 14px;
+  border-radius: 10px;
+  border: none;
+  background: #f7f7f7;
+  box-shadow: inset 2px 2px 5px rgba(0,0,0,0.08), inset -2px -2px 5px rgba(255,255,255,0.9);
+  font-size: 14px;
+}
+
+input::placeholder {
+  color: #9aa6af;
+}
+
+.grid-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+
+.grid-3 {
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+  gap: 14px;
+}
+
+.grid-4 {
+  display: grid;
+  grid-template-columns: repeat(4,1fr);
+  gap: 14px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.header h2 {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 600;
+  color: #0d47a1;
+}
+
+.header-right {
+  display: Asc flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.required {
+  font-size: 13px;
+  color: #e85b45;
+}
+
+.divider {
+  height: 1px;
+  background: #e6e6e6;
+  margin: 18px 0 22px;
+}
+
+.actions {
+  display: flex;
+  justify-content: center;
+  gap: 22px;
+  margin-top: 28px;
+}
+
+.save {
+  width: 130px;
+  height: 44px;
+  border-radius: 12px;
+  border: none;
+  background: #ffc233;
+  color: #ffffff;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 6px 18px rgba(255,194,51,0.5);
+}
+
+.cancel {
+  width: 130px;
+  height: 44px;
+  border-radius: 12px;
+  border: none;
+  background: #9e9e9e;
+  color: #ffffff;
+  font-weight: 600;
+  cursor: pointer;
+}
+

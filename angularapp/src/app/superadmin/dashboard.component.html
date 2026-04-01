@@ -1,0 +1,146 @@
+<!-- Menu icon shown only when sidenav is closed -->
+
+<div class="page">
+<!-- SIDE NAV -->
+  <!-- Menu button always visible when nav closed -->
+  <button class="menu-btn" *ngIf="!isSideNavOpen" (click)="toggleSideNav()">☰</button>
+  
+  <app-superadmin-sidenav
+    [isOpen]="isSideNavOpen"
+    [toggle]="toggleSideNav.bind(this)">
+  </app-superadmin-sidenav>
+
+  <section class="content">
+    <!-- TOP BAR -->
+    <header class="top-bar">
+      <div class="brand">
+        <span class="brand-icon">▮</span>
+        <span class="brand-title">Asset Insight</span>
+      </div>
+    </header>
+
+    <!-- HEADER STRIP -->
+    <div class="header-strip">
+      <div class="metrics">
+        <div class="muted">
+          Last Updated On <b>{{ overview().lastUpdated || '-' }}</b>
+        </div>
+
+        <div class="metric-row">
+          <div class="big">
+            <b>{{ overview().totalClients }}</b> Clients
+          </div>
+          <div class="small">
+            Total Assets <b>{{ overview().totalAssets }}</b>
+          </div>
+        </div>
+
+        <div class="tabs">
+          <button class="tab"
+                  [class.active]="activeTab() === 'clients'"
+                  (click)="activeTab.set('clients')">
+            Clients
+          </button>
+
+          <button class="tab"
+                  [class.active]="activeTab() === 'reports'"
+                  (click)="activeTab.set('reports')">
+            Reports
+          </button>
+        </div>
+      </div>
+
+      <!-- RIGHT REPORT CARDS (like sample) -->
+      <div class="report-cards" *ngIf="activeTab() === 'clients'">
+        <div class="report-card">
+          <div class="report-title">Asset Status</div>
+          <button class="view-btn" (click)="openAssetStatusReport()">View ›</button>
+        </div>
+
+        <div class="report-card">
+          <div class="report-title">User Details</div>
+          <button class="view-btn" (click)="openUserDetailsReport()">View ›</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- LOADING / ERROR -->
+    <div class="state" *ngIf="loading()">
+      <div class="loader"></div>
+      <div>Loading dashboard…</div>
+    </div>
+
+    <div class="state error" *ngIf="!loading() && errorMsg()">
+      {{ errorMsg() }}
+      <button class="retry-btn" (click)="loadDashboard()">Retry</button>
+    </div>
+
+    <!-- CLIENTS TAB -->
+    <div *ngIf="!loading() && !errorMsg() && activeTab() === 'clients'">
+      <div class="clients-grid" *ngIf="hasClients(); else noData">
+        <div class="client-card"
+             *ngFor="let c of overview().clients; trackBy: trackByClientId"
+             (click)="openClientDetails(c)">
+          <div class="client-header">
+            <div class="client-logo">⚡</div>
+            <div>
+              <div class="client-org">{{ c.clientName }}</div>
+              <div class="client-sub">{{ c.clientGroup }}</div>
+            </div>
+          </div>
+
+          <div class="client-stats">
+            <div class="stat"><span class="k">Jobs :</span> <span class="v">{{ c.jobs }}</span></div>
+            <div class="stat"><span class="k">Assets :</span> <span class="v">{{ c.assets }}</span></div>
+            <div class="stat"><span class="k">Active :</span> <span class="v">{{ c.active }}</span></div>
+            <div class="stat"><span class="k">No Connection :</span> <span class="v">{{ c.noConnection }}</span></div>
+          </div>
+        </div>
+      </div>
+
+      <ng-template #noData>
+        <div class="empty-card">No clients available.</div>
+      </ng-template>
+
+      <!-- BOTTOM SUMMARY -->
+      <div class="status-summary">
+        <div class="summary-item">
+          <div class="sum-icon active">⚡</div>
+          <div>
+            <div class="sum-label">Active</div>
+            <div class="sum-value">{{ overview().statusSummary.active }}</div>
+          </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="summary-item">
+          <div class="sum-icon noconn">🚫</div>
+          <div>
+            <div class="sum-label">No Connection</div>
+            <div class="sum-value">{{ overview().statusSummary.noConnection }}</div>
+          </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="summary-item">
+          <div class="sum-icon notop">🛠️</div>
+          <div>
+            <div class="sum-label">Not Operational</div>
+            <div class="sum-value">{{ overview().statusSummary.notOperational }}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- REPORTS TAB (placeholder) -->
+    <div *ngIf="!loading() && !errorMsg() && activeTab() === 'reports'" class="reports-area">
+      <div class="reports-placeholder">
+        <h3>Reports</h3>
+        <p>Use the cards on the right (Asset Status / User Details).</p>
+      </div>
+    </div>
+
+  </section>
+</div>

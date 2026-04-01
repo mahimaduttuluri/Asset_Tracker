@@ -9,18 +9,10 @@ import { SideNavComponent } from '../layout/side-nav/side-nav';
   templateUrl: './dashboard.html',
   styleUrls: ['./dashboard.css']
 })
+
 export class DashboardComponent {
-  isDarkTheme = false;
-
-  toggleTheme() {
-    this.isDarkTheme = !this.isDarkTheme;
-    document.documentElement.setAttribute(
-      'data-theme',
-      this.isDarkTheme ? 'dark' : 'light'
-    );
-  }
-
   assetSummary = [
+
     { nameLine1: 'Batching', nameLine2: 'Plant', count: 16, total: 40, icon: 'asset-icons/batching-plant.png' },
     { nameLine1: 'Tower', nameLine2: 'Crane', count: 9, total: 38, icon: 'asset-icons/tower-crane.jpg' },
     { nameLine1: 'Road', nameLine2: 'Roller', count: 10, total: 36, icon: 'asset-icons/road-roller.jpg' },
