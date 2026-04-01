@@ -4,20 +4,18 @@
   <div class="close-btn" (click)="toggle()">✕</div>
 
   <nav class="nav-links">
-
-
+    <a routerLink="/superadmin/dashboard" routerLinkActive="active" >
       <div class="nav-item">
         <span class="icon">🏠</span>
         <span class="label">Home</span>
       </div>
-
-    <a routerLink="/superadmin/clients" routerLinkActive="active">
-      <div class="nav-item">
-        <span class="icon">🏢</span>
-        <span class="label">Client Onboarding</span>
-      </div>
     </a>
-
+      <a routerLink="/superadmin/clients" routerLinkActive="active">
+        <div class="nav-item">
+          <span class="icon">🏢</span>
+          <span class="label">Client Onboarding</span>
+        </div>
+      </a>
 
     <a routerLink="/announcements" routerLinkActive="active">
       <div class="nav-item">
