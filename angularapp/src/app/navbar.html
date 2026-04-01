@@ -1,0 +1,22 @@
+<nav class="navbar">
+  <!-- App Brand -->
+  <div class="brand">
+    <span class="brand-icon">▮</span>
+    <span class="brand-title">Asset Tracker</span>
+  </div>
+
+  <!-- Nav Links -->
+  <div class="nav-links">
+    <a routerLink="/profile" routerLinkActive="active" title="Profile">
+      <span>👤 Profile</span>
+    </a>
+  </div>
+
+  <!-- Actions -->
+  <div class="nav-actions">
+    <button class="theme-toggle" (click)="toggleTheme()">
+      {{ getThemeIcon() }}
+    </button>
+  </div>
+</nav>
+
