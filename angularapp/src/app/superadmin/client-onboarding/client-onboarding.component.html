@@ -1,0 +1,59 @@
+<div class="overlay">
+
+  <!-- Modal form (always shown like asset-type modal mode) -->
+  <div class="modal">
+    <!-- Header -->
+
+    <div class="header">
+      <div class="progress-wrapper">
+        <div class="progress-label">
+          Form Completion: {{ completionPercent }}%
+        </div>
+        <div class="progress-track">
+          <div class="progress-fill" [style.width.%]="completionPercent"></div>
+        </div>
+      </div>
+      <div class="header-title">
+        <h2><strong>Client Onboarding</strong></h2>
+      </div>
+      <div class="header-right">
+        <span class="required">* Required Fields</span>
+      </div>
+    </div>
+
+
+    <div class="divider"></div>
+
+    <form [formGroup]="onboardingForm" (ngSubmit)="submitForm()">
+
+      <div class="row">
+        <label>Client Code <span class="required">*</span></label>
+        <input type="text" formControlName="clientCode" placeholder="Enter client code" />
+      </div>
+
+      <div class="row">
+        <label>Client Name <span class="required">*</span></label>
+        <input type="text" formControlName="clientName" placeholder="Enter client name" />
+      </div>
+
+      <div class="row">
+        <label>Tenant Password <span class="required">*</span></label>
+        <input type="password" formControlName="tenantPassword" placeholder="Enter tenant password (min 8 chars)" />
+      </div>
+
+      <div class="actions">
+        <button class="save" type="submit" [disabled]="onboardingForm.invalid">Get details</button>
+
+        <button type="button" class="cancel" (click)="cancel()">Cancel</button>
+
+      </div>
+
+    </form>
+
+    <!-- Payload box inside modal if submitted -->
+    <div class="payload-box" *ngIf="submittedPayload">
+      <h3>Submitted Payload</h3>
+      <pre>{{ submittedPayload | json }}</pre>
+    </div>
+  </div>
+</div>

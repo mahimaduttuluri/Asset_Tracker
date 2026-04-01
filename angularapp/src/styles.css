@@ -104,3 +104,32 @@ app-root > * {
   position: fixed;
   left: 0;
 }
+
+/* Theme Shadows & Utilities */
+:root {
+  --shadow-xs: 0 1px 2px rgba(0,0,0,0.08);
+  --shadow-sm: 0 4px 12px rgba(0,0,0,0.10);
+  --shadow-md: 0 6px 16px rgba(0,0,0,0.12);
+  --shadow-lg: 0 10px 22px rgba(0,0,0,0.14);
+  --shadow-xl: 0 20px 60px rgba(0,0,0,0.20);
+  --bg-muted: #eef3fb;
+  --bg-input: #f8f9fa;
+  --border-divider: #e0e0e0;
+  --text-muted: #adb5bd;
+  --warning-bg: #fef3c7;
+  --warning-text: #92400e;
+}
+
+[data-theme="dark"] {
+  --shadow-xs: 0 1px 3px rgba(0,0,0,0.16);
+  --shadow-sm: 0 4px 12px rgba(0,0,0,0.20);
+  --shadow-md: 0 6px 16px rgba(0,0,0,0.25);
+  --shadow-lg: 0 10px 22px rgba(0,0,0,0.30);
+  --shadow-xl: 0 20px 60px rgba(0,0,0,0.40);
+  --bg-muted: #334155;
+  --bg-input: #475569;
+  --border-divider: #475569;
+  --text-muted: #94a3b8;
+  --warning-bg: #7c2d12;
+  --warning-text: #fed7aa;
+}
