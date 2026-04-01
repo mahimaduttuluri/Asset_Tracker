@@ -79,15 +79,18 @@
   transition: all 0.2s ease;
 }
 
+
 .user-profile:hover {
-  background: #f5f5f5;
+  background: var(--bg-light-card);
 }
+
+
 
 .user-avatar {
   width: 40px;
   height: 40px;
   border-radius: 50%;
-  background: linear-gradient(135deg, #1976d2, #42a5f5);
+  background: linear-gradient(135deg, var(--primary-blue), var(--success-blue));
   display: flex;
   align-items: center;
   justify-content: center;
@@ -96,22 +99,27 @@
   color: white;
 }
 
+
 .user-info {
   display: flex;
   flex-direction: column;
   gap: 2px;
 }
 
+
 .user-name {
   font-weight: 600;
   font-size: 14px;
-  color: #333;
+  color: var(--text-primary);
 }
+
+
 
 .user-role {
   font-size: 12px;
-  color: #666;
+  color: var(--text-secondary);
 }
+
 
 .add-asset-btn {
   background: #1976d2;
@@ -123,12 +131,14 @@
 }
 
 /* KPI */
+
 .kpi-card {
-  background: #ffffff;
+  background: var(--bg-card);
   padding: 15px;
   border-radius: 10px;
   margin: 20px 0;
 }
+
 
 /* Asset cards container */
 .asset-cards {
@@ -139,15 +149,17 @@
 }
 
 /* Individual card */
+
 .asset-card {
-  background: #ffffff;
-  border: 1px solid #e0e0e0;
+  background: var(--bg-card);
+  border: 1px solid var(--border-default);
   border-radius: 14px;
   padding: 18px 16px;
   text-align: center;
   box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
+
 
 .asset-card:hover {
   transform: translateY(-2px);
