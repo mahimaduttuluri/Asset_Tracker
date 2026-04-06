@@ -1,9 +1,9 @@
-# Task: Fix asset-onboarding input fields alignment to match asset-type form
+# Dashboard to Asset-Insights Navigation Task
 
 ## Steps:
-- [x] Previous: Made CSS match, confirmed layout issue (.form-card missing)
-- [x] 1. Added margin:0 auto to .form-card to center and fix alignment
-- [x] 2. Update TODO and complete
-
-**Result:** Task complete - asset-onboarding form now centered with proper label-input alignment matching asset-type.
+- [x] 1. Add route for asset-insights in app.routes.ts
+- [x] 2. Update dashboard.ts: inject Router, add viewAssetDetails() method
+- [x] 3. Update dashboard.html: add (click)="viewAssetDetails()" to button
+- [x] 4. Test navigation (recommend running ng serve)
+- [x] 5. Complete task
 

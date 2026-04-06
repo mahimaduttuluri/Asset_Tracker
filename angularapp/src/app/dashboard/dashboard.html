@@ -1,136 +1,120 @@
 <div class="dashboard-layout">
 
-  
-  <!-- SIDE NAV COMPONENT -->
-  <app-side-nav></app-side-nav>
+  <!-- SIDE NAV -->
+  <app-side-nav (isOpenChange)="isSideNavOpen = $event"></app-side-nav>
 
   <!-- MAIN CONTENT -->
-  <div class="dashboard-content">
+  <div
+    class="dashboard-content"
+    [ngStyle]="{ 'margin-left.px': isSideNavOpen ? 105 : 20 }"
+  >
 
-<!-- HEADER -->
-    <div class="header">
+    <!-- TOP DASHBOARD SPLIT -->
+    <div class="top-dashboard-layout">
 
-      <h2>Asset Insight</h2>
-      <div class="user-profile">
+      <!-- LEFT PANEL : SITES -->
+      <div class="left-panel">
 
-        <div class="user-avatar">JD</div>
-        <div class="user-info">
-          <div class="user-name">John Doe</div>
-          <div class="user-role">Admin</div>
+        <div class="sites-container">
+
+          <!-- HEADER -->
+          <div class="sites-header">
+            <div>
+              <h4>Sites</h4>
+              <div class="sites-count">{{ sites.length }} sites</div>
+            </div>
+          </div>
+
+          <!-- MAP + KPI CONTENT -->
+          <div class="sites-content">
+
+            <!-- MAP -->
+            <div id="sitesMap" class="sites-map"></div>
+
+            <!-- STATS -->
+            <div class="sites-stats">
+
+              <div class="stat-card">
+                <div class="stat-icon">
+                  <img src="/icons/robotic-arm.png" alt="Total Assets" />
+                </div>
+                <div class="stat-info">
+                  <div class="stat-label">Total Assets</div>
+                  <div class="stat-value">{{ totalAssets }}</div>
+                </div>
+              </div>
+
+              <div class="stat-card danger">
+                <div class="stat-icon">
+                  <img src="/icons/remove.png" alt="Not Reporting" />
+                </div>
+                <div class="stat-info">
+                  <div class="stat-label">Not Reporting</div>
+                  <div class="stat-value">7</div>
+                </div>
+              </div>
+
+              <div class="stat-card success">
+                <div class="stat-icon">
+                  <img src="/icons/tasks.png" alt="Active" />
+                </div>
+                <div class="stat-info">
+                  <div class="stat-label">Active</div>
+                  <div class="stat-value">18</div>
+                </div>
+              </div>
+            </div>
+
+          </div>
         </div>
+
       </div>
-    </div>
 
-    <!-- ASSET TYPE CONTAINER -->
-    <div class="asset-type-container">
-      <h4>Asset types</h4>
-      <div class="asset-cards">
+      <!-- RIGHT PANEL : ASSET TYPES + DETAILS -->
+      <div class="right-panel">
 
-        <div class="asset-card" *ngFor="let asset of assetSummary">
+        <!-- ASSET TYPES (VERTICAL) -->
+        <div class="asset-types-vertical">
+          <h4>Asset Types</h4>
 
-            <div class="asset-icon-wrapper">
-            <img
+          <div class="asset-type-list">
+            <div
+              class="asset-type-item"
+              *ngFor="let asset of assetSummary"
+            >
+              <img
                 [src]="asset.icon"
                 [alt]="asset.nameLine1 + ' ' + asset.nameLine2"
-                class="asset-icon"
-            />
-            </div>
+              />
 
-            <div class="asset-title">
-            <div>{{ asset.nameLine1 }}</div>
-            <div>{{ asset.nameLine2 }}</div>
+              <div>
+                <div class="asset-name">
+                  {{ asset.nameLine1 }} {{ asset.nameLine2 }}
+                </div>
+                <div class="asset-count-small">
+                  {{ asset.count }}/{{ asset.total }}
+                </div>
+              </div>
             </div>
+          </div>
+        </div>
 
-            <div class="asset-count">
-            <span class="count">{{ asset.count }}</span>
-            <span class="total">/{{ asset.total }}</span>
-            </div>
+        <!-- ASSET DETAILS CARD -->
+        <div class="asset-details-card">
+          <h4>Asset Details</h4>
 
+          <p>
+            View detailed information, status, and utilisation of assets
+            across all sites.
+          </p>
+
+<button class="primary-btn" (click)="viewAssetDetails()">
+            View Asset Details →
+          </button>
         </div>
 
       </div>
     </div>
 
-
-    <!-- CONTENT GRID -->
-    <div class="content-grid">
-
-      <!-- LEFT - WATCHLIST -->
-      <div class="section-card watchlist-card">
-        <h4>Watchlist <span class="watchlist-count">(3)</span></h4>
-        <div class="watchlist-mini-cards">
-          <div class="mini-card">
-            <div class="mini-card-header">Batching Plants</div>
-            <div class="mini-card-detail danger">Not Working - 12/36</div>
-          </div>
-          <div class="mini-card">
-            <div class="mini-card-header">Wheel Loader - 3.5 Cum</div>
-            <div class="mini-card-detail">Not utilized - 33 Days</div>
-          </div>
-          <div class="mini-card">
-            <div class="mini-card-header">Cement-Grade</div>
-            <div class="mini-card-detail">75%</div>
-          </div>
-          <div class="mini-card add-card">
-            <button class="add-to-watchlist-btn">+</button>
-          </div>
-        </div>
-      </div>
-
-      <!-- RIGHT - ALERTS -->
-      <div class="section-card">
-        <h4>Alerts</h4>
-        <div class="alert-item" *ngFor="let alert of alerts">
-          <strong>{{ alert.asset }}</strong>
-          <div class="alert-text">Not reporting from {{ alert.days }} days</div>
-        </div>
-      </div>
-
-      <!-- FOOTER STATUS TABS -->
-  <div class="footer-tabs">
-
-    <div class="footer-tab">
-      <div class="footer-icon not-operating"></div>
-      <div class="footer-text">
-        <div class="footer-label">Not Operating</div>
-        <div class="footer-value">947 <span>(+83)</span></div>
-      </div>
-    </div>
-
-    <div class="footer-tab">
-      <div class="footer-icon idle-assets"></div>
-      <div class="footer-text">
-        <div class="footer-label">Idle Assets</div>
-        <div class="footer-value">17 <span>(+6)</span></div>
-      </div>
-    </div>
-
-    <div class="footer-tab">
-      <div class="footer-icon not-reporting"></div>
-      <div class="footer-text">
-        <div class="footer-label">Not Reporting</div>
-        <div class="footer-value">115 <span>(+83)</span></div>
-      </div>
-    </div>
-
-    <div class="footer-tab">
-      <div class="footer-icon surplus"></div>
-      <div class="footer-text">
-        <div class="footer-label">Surplus</div>
-        <div class="footer-value">73 <span>(+2)</span></div>
-      </div>
-    </div>
-
-    <div class="footer-tab">
-      <div class="footer-icon breakdown"></div>
-      <div class="footer-text">
-        <div class="footer-label">Breakdown</div>
-        <div class="footer-value">73 <span>(+2)</span></div>
-      </div>
-    </div>
-
-  </div>
-
-    </div>
   </div>
 </div>

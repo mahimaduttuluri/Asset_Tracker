@@ -1,6 +1,6 @@
 
 .side-nav {
-  width: 90px;
+  width: 120px;
   height: 100vh;
   background: var(--bg-nav);
   box-shadow: 2px 0 10px rgba(0, 0, 0, 0.08);
@@ -14,7 +14,7 @@
 
 /* Close button */
 .close-btn {
-  font-size: 22px;
+  font-size: 26px;
   color: #4a6fa5;
   cursor: pointer;
   margin-bottom: 30px;
@@ -34,14 +34,14 @@
   align-items: center;
   text-align: center;
   color: #7fa3c7;
-  font-size: 13px;
+  font-size: 15px;
   cursor: pointer;
 }
 
 /* Icons */
 .nav-item .icon {
-  font-size: 26px;
-  margin-bottom: 6px;
+  width: 28px;
+  height: 28px;
 }
 
 /* Active state */

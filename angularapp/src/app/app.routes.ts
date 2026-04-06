@@ -2,6 +2,7 @@ import { Routes } from '@angular/router';
 import { DashboardComponent } from './dashboard/dashboard';
 import { OnboardingComponent } from './onboarding/onboarding';
 import { AssetTypeComponent } from './Pages/asset-type/asset-type.component';
+import { AssetInsightsComponent } from './Pages/asset-insights/asset-insights.component';
 import { SuperAdminDashboardComponent } from './superadmin/dashboard.component';
 
 export const routes: Routes = [
@@ -9,6 +10,7 @@ export const routes: Routes = [
   { path: 'profile', redirectTo: '/dashboard', pathMatch: 'full' },
   { path: 'onboarding', component: OnboardingComponent },
 { path: 'asset-types', component: AssetTypeComponent },
+  { path: 'asset-insights', loadComponent: () => import('./Pages/asset-insights/asset-insights.component').then(m => m.AssetInsightsComponent) },
   { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
   
 { path: 'superadmin/dashboard', component: SuperAdminDashboardComponent },

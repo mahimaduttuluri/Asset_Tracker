@@ -165,21 +165,6 @@
       </select>
     </div>
 
-    <!-- RUN IDs & TIMESTAMPS (Admin/Internal) -->
-    <div class="row grid-2">
-      <label>Record Created Run ID</label>
-      <input type="number" formControlName="Record_Created_Run_id" placeholder="Run ID" />
-      <label>Record Modified Run ID</label>
-      <input type="number" formControlName="Record_modified_run_id" placeholder="Run ID" />
-    </div>
-
-    <div class="row grid-2">
-      <label>Record Create Timestamp</label>
-      <input type="datetime-local" formControlName="RecordCreateTimestamp" />
-      <label>Record Modify Timestamp</label>
-      <input type="datetime-local" formControlName="RecordModifyTimestamp" />
-    </div>
-
     <!-- ACTIONS -->
     <div class="actions">
       <button class="save" type="button" (click)="save()">Save Asset</button>

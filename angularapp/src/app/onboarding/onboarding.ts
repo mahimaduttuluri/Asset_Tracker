@@ -13,6 +13,7 @@ imports: [CommonModule, SideNavComponent, AssetTypeComponent, AssetOnboardingCom
   styleUrls: ['./onboarding.css']
 })
 export class OnboardingComponent {
+  isSideNavOpen = true;
   activeTab = '';
   setTab(tab: string) {
     this.activeTab = tab;

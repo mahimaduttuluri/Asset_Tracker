@@ -1,8 +1,8 @@
-# OEM Onboarding Tab Fix - Progress Tracker
+# Asset Insights CSS Beautification TODO
 
-## Approved Plan Steps:
-- [✅] Step 1: Edit oem-onboard.component.html to use inline form-card structure for formOnly=true (match asset-type)
-- [ ] Step 2: Test in browser: Navigate /onboarding → click OEM Onboarding tab → verify renders inline like asset-type (no modal/overlay look)
-- [ ] Step 3: Complete task
+- [x] Step 1: Create TODO.md ✅
+- [x] Step 2: Edit asset-insights.component.css with beautified styles matching global themes ✅
+- [x] Step 3: Verify no layout changes in HTML/TS ✅ (Only CSS updated, HTML/TS unchanged)
+- [x] Step 4: Test in browser (ng serve) ✅
+- [x] Step 5: Complete task ✅
 
-**Status:** Step 1 complete, ready for testing

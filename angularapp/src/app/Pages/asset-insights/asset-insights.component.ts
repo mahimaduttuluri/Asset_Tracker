@@ -1,134 +1,42 @@
-import { CommonModule, DOCUMENT } from '@angular/common';
-import {
-  Component,
-  EventEmitter,
-  Input,
-  Output,
-  computed,
-  signal,
-  HostListener,
-  inject,
-} from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-
-type AssetStatus =
-  | 'Active'
-  | 'Not Operating'
-  | 'Idle'
-  | 'Not Reporting'
-  | 'Surplus'
-  | 'Breakdown';
-
-type OwnershipFilter = 'All' | 'Hired' | 'Owned';
-
-export interface AssetInsightItem {
-  id: string;
-  name: string;
-  ownership: 'Hired' | 'Owned';
-  status: AssetStatus;
-  critical: boolean;
-
-  avgUtilisationPct: number;
-  avgProductivityPct: number;
-  idleHours: number;
-
-  location?: string;
-  lastReported?: string; // e.g., "2 mins ago" (optional)
-  starred?: boolean;
-  pinned?: boolean;
-}
+import { SideNavComponent } from '../../layout/side-nav/side-nav';
 
 @Component({
   selector: 'app-asset-insights',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, SideNavComponent, FormsModule],
   templateUrl: './asset-insights.component.html',
-  styleUrls: ['./asset-insights.component.scss'],
+  styleUrls: ['./asset-insights.component.css'],
 })
 export class AssetInsightsComponent {
-  @Input() assets: AssetInsightItem[] = this.mockAssets();
-  @Output() viewDetails = new EventEmitter<AssetInsightItem>();
 
-  // Filters
-  ownership = signal<OwnershipFilter>('All');
-  onlyCritical = signal(false);
-  search = signal('');
+  isSideNavOpen = true;
 
-  // Drawer state
-  selectedAsset = signal<AssetInsightItem | null>(null);
-  drawerOpen = computed(() => !!this.selectedAsset());
+  // ✅ View toggle
+  viewMode: 'card' | 'table' = 'card';
 
-  // Optional: used if you want to lock scroll later (kept simple now)
-  private document = inject(DOCUMENT);
+  // ✅ Filters
+  selectedSite = 'All';
+  selectedAssetType = 'All';
 
-  filteredAssets = computed(() => {
-    const q = this.search().toLowerCase().trim();
-    return this.assets
-      .filter(a => this.ownership() === 'All' || a.ownership === this.ownership())
-      .filter(a => !this.onlyCritical() || a.critical)
-      .filter(a =>
-        !q ||
-        a.id.toLowerCase().includes(q) ||
-        a.name.toLowerCase().includes(q) ||
-        a.status.toLowerCase().includes(q)
-      );
-  });
+  sites = ['All', 'Chennai', 'Mumbai', 'Delhi'];
+  assetTypes = ['All', 'Batching Plant', 'Crane', 'Loader'];
 
-  siteCount = computed(() => this.filteredAssets().length);
+  // ✅ Mock Asset Data
+  assets = [
+    { id: 'AST001', site: 'Chennai', type: 'Crane', status: 'Active' },
+    { id: 'AST002', site: 'Mumbai', type: 'Batching Plant', status: 'Idle' },
+    { id: 'AST003', site: 'Delhi', type: 'Loader', status: 'Not Reporting' },
+    { id: 'AST004', site: 'Chennai', type: 'Crane', status: 'Active' },
+  ];
 
-  // Drawer open from card/button
-  openDrawer(asset: AssetInsightItem) {
-    this.selectedAsset.set(asset);
-    this.viewDetails.emit(asset);
-  }
-
-  closeDrawer() {
-    this.selectedAsset.set(null);
-  }
-
-  // Close on ESC
-  @HostListener('document:keydown.escape')
-  onEscape() {
-    if (this.drawerOpen()) this.closeDrawer();
-  }
-
-  toggleStar(a: AssetInsightItem) {
-    a.starred = !a.starred;
-  }
-
-  togglePin(a: AssetInsightItem) {
-    a.pinned = !a.pinned;
-  }
-
-  statusClass(status: AssetStatus) {
-    if (status === 'Active') return 'good';
-    if (status === 'Idle' || status === 'Not Operating') return 'warn';
-    return 'danger';
-  }
-
-  clampPct(n: number) {
-    return Math.max(0, Math.min(100, Math.round(n)));
-  }
-
-  private mockAssets(): AssetInsightItem[] {
-    return Array.from({ length: 12 }).map((_, i) => ({
-      id: `13250${i + 1}H`,
-      name: 'Mobile concrete batching plant',
-      ownership: i % 3 === 0 ? 'Owned' : 'Hired',
-      status:
-        i % 6 === 0
-          ? 'Breakdown'
-          : i % 5 === 0
-          ? 'Not Reporting'
-          : i % 4 === 0
-          ? 'Idle'
-          : 'Active',
-      critical: i % 4 === 0,
-      avgUtilisationPct: 78 + (i % 5) * 3,
-      avgProductivityPct: 80 + (i % 4) * 4,
-      idleHours: +(0.8 + i * 0.2).toFixed(1),
-      location: i % 2 === 0 ? 'Site A - Zone 2' : 'Site B - Zone 1',
-      lastReported: i % 5 === 0 ? '12 mins ago' : '2 mins ago',
-    }));
+  // ✅ Filtered Assets
+  get filteredAssets() {
+    return this.assets.filter(asset =>
+      (this.selectedSite === 'All' || asset.site === this.selectedSite) &&
+      (this.selectedAssetType === 'All' || asset.type === this.selectedAssetType)
+    );
   }
 }
