@@ -1,0 +1,78 @@
+<div class="page">
+  <app-side-nav (isOpenChange)="isSideNavOpen = $event"></app-side-nav>
+
+  <div class="content" [ngStyle]="{ 'margin-left.px': isSideNavOpen ? 150 : 20 }">
+
+    <!-- HEADER -->
+    <div class="header">
+      <h1>Asset Insights</h1>
+    </div>
+
+    <!-- FILTER BAR -->
+    <div class="filter-bar">
+
+      <!-- Site Filter -->
+      <select [(ngModel)]="selectedSite">
+        <option *ngFor="let site of sites" [value]="site">
+          {{ site }}
+        </option>
+      </select>
+
+      <!-- Asset Type Filter -->
+      <select [(ngModel)]="selectedAssetType">
+        <option *ngFor="let type of assetTypes" [value]="type">
+          {{ type }}
+        </option>
+      </select>
+
+      <!-- VIEW TOGGLE -->
+      <div class="view-toggle">
+        <button
+          [class.active]="viewMode === 'card'"
+          (click)="viewMode = 'card'"
+        >
+          Card View
+        </button>
+
+        <button
+          [class.active]="viewMode === 'table'"
+          (click)="viewMode = 'table'"
+        >
+          Table View
+        </button>
+      </div>
+
+    </div>
+
+    <!-- CARD VIEW -->
+    <div class="card-grid" *ngIf="viewMode === 'card'">
+      <div class="asset-card" *ngFor="let asset of filteredAssets">
+        <h3>{{ asset.id }}</h3>
+        <p>Site: {{ asset.site }}</p>
+        <p>Type: {{ asset.type }}</p>
+        <p>Status: {{ asset.status }}</p>
+      </div>
+    </div>
+
+    <!-- TABLE VIEW -->
+    <table class="asset-table" *ngIf="viewMode === 'table'">
+      <thead>
+        <tr>
+          <th>Asset ID</th>
+          <th>Site</th>
+          <th>Type</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let asset of filteredAssets">
+          <td>{{ asset.id }}</td>
+          <td>{{ asset.site }}</td>
+          <td>{{ asset.type }}</td>
+          <td>{{ asset.status }}</td>
+        </tr>
+      </tbody>
+    </table>
+
+  </div>
+</div>

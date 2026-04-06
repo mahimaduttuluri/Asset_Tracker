@@ -1,0 +1,31 @@
+<aside class="side-nav" *ngIf="isSideNavOpen">
+  <!-- Close Button -->
+  <div class="close-btn" (click)="toggleSideNav()">✕</div>
+
+  <nav class="nav-links">
+    <a routerLink="/dashboard" routerLinkActive="active">
+      <div class="nav-item">    
+      <img src="/icons/crane.png" alt="Home" class="icon"/>
+        <span class="label">Home</span>
+      </div>
+    </a>
+
+    <a routerLink="/onboarding" routerLinkActive="active">
+   <div class="nav-item">
+    <img src="/icons/add.png" alt="onboarding" class="icon"/>
+    <span class="label">Onboarding</span>
+  </div>
+   </a>
+
+    <a routerLink="/announcements" routerLinkActive="active">
+      <div class="nav-item">
+        <img src="/icons/megaphone.png" alt="announcements" class="icon"/>
+        <span class="label">Announcements</span>
+      </div>
+    </a>
+  </nav>
+</aside>
+<button class="menu-btn" *ngIf="!isSideNavOpen"
+        (click)="toggleSideNav()">
+      ☰
+</button>

@@ -1,0 +1,265 @@
+/* =====================================================
+   LAYOUT
+===================================================== */
+.dashboard-layout {
+  display: flex;
+  height: 100vh;
+  background: var(--bg-app);
+}
+
+.dashboard-content {
+  flex: 1;
+  padding: 22px;
+  overflow-y: auto;
+  transition: margin-left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* =====================================================
+   TOP DASHBOARD SPLIT (LEFT / RIGHT PANELS)
+===================================================== */
+.top-dashboard-layout {
+  display: grid;
+  grid-template-columns: 2.4fr 1fr;
+  gap: 20px;
+  align-items: start;
+  margin-bottom: 28px;
+}
+
+.left-panel {
+  width: 100%;
+}
+
+.right-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* =====================================================
+   SITES SECTION (LEFT PANEL)
+===================================================== */
+.sites-container {
+  background: var(--bg-card);
+  border: 1px solid var(--border-default);
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+}
+
+/* Header */
+.sites-header {
+  margin-bottom: 6px;
+}
+
+.sites-header h4 {
+  font-size: 22px;
+  margin: 0;
+  line-height: 1.2;
+  color: var(--text-primary);
+}
+
+.sites-count {
+  margin-top: 2px;
+  font-size: 14px;
+  color: var(--text-secondary);
+  font-weight: 500;
+}
+
+/* Content */
+.sites-content {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* Map */
+.sites-map {
+  height: 380px;
+  width: 100%;
+  min-height: 380px;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+/* KPI Cards */
+.sites-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+.stat-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-default);
+  border-radius: 10px;
+  padding: 14px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+}
+
+.stat-label {
+  font-size: 13px;
+  color: var(--text-secondary);
+  margin-bottom: 4px;
+}
+
+.stat-value {
+  font-size: 20px;
+  font-weight: 700;
+  color: #1976d2;
+}
+
+.stat-card.success .stat-value {
+  color: #2e7d32;
+}
+
+.stat-card.danger .stat-value {
+  color: #e53935;
+}
+/* STATUS CARD ICON LAYOUT */
+.stat-card {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+/* Icon container */
+.stat-icon {
+  width: 42px;
+  height: 42px;
+  border-radius: 10px;
+  background: var(--bg-hover);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+/* Icon image */
+.stat-icon img {
+  width: 24px;
+  height: 24px;
+}
+
+/* Text alignment */
+.stat-info {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Optional icon background colors */
+.stat-card.success .stat-icon {
+  background: rgba(46, 125, 50, 0.12);
+}
+
+.stat-card.danger .stat-icon {
+  background: rgba(229, 57, 53, 0.12);
+}
+
+/* =====================================================
+   ASSET TYPES – RIGHT PANEL
+===================================================== */
+.asset-types-vertical {
+  background: var(--bg-card);
+  border: 1px solid var(--border-default);
+  border-radius: 12px;
+  padding: 16px;
+}
+
+.asset-types-vertical h4 {
+  margin: 0 0 12px 0;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.asset-type-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.asset-type-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid var(--border-default);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.asset-type-item:hover {
+  background: var(--bg-hover);
+}
+
+.asset-type-item img {
+  width: 36px;
+  height: 36px;
+}
+
+.asset-name {
+  font-weight: 600;
+  font-size: 14px;
+  color: var(--text-primary);
+}
+
+.asset-count-small {
+  font-size: 12px;
+  color: var(--text-secondary);
+}
+
+/* =====================================================
+   ASSET DETAILS CARD – RIGHT PANEL
+===================================================== */
+.asset-details-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-default);
+  border-radius: 12px;
+  padding: 16px;
+}
+
+.asset-details-card h4 {
+  margin: 0 0 8px 0;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.asset-details-card p {
+  font-size: 13px;
+  color: var(--text-secondary);
+  margin-bottom: 14px;
+  line-height: 1.4;
+}
+
+.primary-btn {
+  width: 100%;
+  background: #ffc238;
+  border: none;
+  color: var(--text-primary);
+  padding: 10px 14px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.primary-btn:hover {
+  background: #1565c0;
+}
+
+/* =====================================================
+   SHARED THEME SAFETY
+===================================================== */
+.section-card,
+.footer-tab,
+.kpi-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-default);
+}
+
+.danger {
+  color: var(--danger);
+}

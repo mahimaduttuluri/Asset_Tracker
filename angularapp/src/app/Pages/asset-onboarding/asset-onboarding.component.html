@@ -1,0 +1,175 @@
+<div class="form-card">
+  <div class="header">
+    <div class="divider"></div>
+    <div>
+      <h2><strong>Asset Onboarding</strong></h2>
+    </div>
+    <div class="header-right">
+      <span class="required">* Required Fields</span>
+    </div>
+  </div>
+  <div class="divider"></div>
+
+  <form [formGroup]="assetForm">
+    
+    <!-- BASIC ASSET INFO - Row 1 -->
+    <div class="row">
+      <label>Asset ID</label>
+      <input formControlName="Asset_ID" placeholder="Enter Asset ID" />
+    </div>
+
+    <div class="row">
+      <label>Asset Name *</label>
+      <input formControlName="Asset_Name" placeholder="Enter Asset Name" />
+    </div>
+
+    <div class="row">
+      <label>Asset Code *</label>
+      <input formControlName="Asset_Code" placeholder="Enter Asset Code" />
+    </div>
+
+    <div class="row grid-2">
+      <label>Asset Type *</label>
+      <input formControlName="Asset_Type" placeholder="Asset Type" />
+      <label>Asset Type Key *</label>
+      <input type="number" formControlName="Asset_Type_Key" placeholder="Type Key" />
+    </div>
+
+    <div class="row grid-2">
+      <label>Fuel Type</label>
+      <input formControlName="Asset_Fuel_Type" placeholder="Fuel Type" />
+      <label>Device Type</label>
+      <input formControlName="Asset_Device_Type" placeholder="Device Type" />
+    </div>
+
+    <!-- PRODUCT & MANUFACTURER -->
+    <div class="row">
+      <label>Product Name</label>
+      <input formControlName="Asset_Product_Name" placeholder="Product Name" />
+    </div>
+
+    <div class="row grid-2">
+      <label>Manufacturer Year</label>
+      <input type="number" formControlName="Asset_Manufacturer_Year" placeholder="Year" />
+      <label>Onboarded Date</label>
+      <input type="date" formControlName="Asset_Onboarded_Date" />
+    </div>
+
+    <!-- IDENTIFICATION -->
+    <div class="row grid-4">
+      <label>Serial Number</label>
+      <input formControlName="Asset_Serial_Number" placeholder="Serial Number" />
+      <label>IMEI Number</label>
+      <input formControlName="IMEI_Number" placeholder="IMEI" />
+      <label>Registration No</label>
+      <input formControlName="RegistrationNo" placeholder="Reg No" />
+      <label>Asset Tag</label>
+      <input formControlName="Asset_Tag" placeholder="Tag" />
+    </div>
+
+    <!-- TECHNICAL SPECS -->
+    <div class="row grid-3">
+      <label>Asset Capacity</label>
+      <input type="number" step="0.01" formControlName="AssetCapacity" placeholder="Capacity" />
+      <label>Expected Working Hours</label>
+      <input type="number" formControlName="ExpectedWorkingHours" placeholder="Hours" />
+      <label>AIS Fuel</label>
+      <input formControlName="Ais_Fuel" placeholder="AIS Fuel" />
+    </div>
+
+    <div class="row">
+      <label>Energy Meter Type</label>
+      <input formControlName="EnergyMeterType" placeholder="Meter Type" />
+    </div>
+
+    <!-- PROJECT & OEM -->
+    <div class="row grid-2">
+      <label>Project Key *</label>
+      <input type="number" formControlName="Project_Key" placeholder="Project ID" />
+      <label>Section Key *</label>
+      <input type="number" formControlName="Section_Key" placeholder="Section ID" />
+    </div>
+
+    <div class="row grid-2">
+      <label>OEM Key</label>
+      <input type="number" formControlName="OEM_Key" placeholder="OEM ID" />
+      <label>Company Code</label>
+      <input formControlName="CompanyCode" placeholder="Company Code" />
+    </div>
+
+    <!-- DATES -->
+    <div class="row grid-4">
+      <label>Asset Start Date</label>
+      <input type="date" formControlName="Asset_Start_Date" />
+      <label>Asset End Date</label>
+      <input type="date" formControlName="Asset_End_Date" />
+      <label>Job Start Date</label>
+      <input type="date" formControlName="Job_StartDate" />
+       <label>Job End Date</label>
+      <input type="date" formControlName="Job_EndDate" />
+      
+    </div>
+
+    <div class="row grid-2">
+      <label>Last Maintained Date</label>
+      <input type="date" formControlName="LastMaintainedDate" />
+      <label>TimeZone</label>
+      <input formControlName="TimeZone" placeholder="TimeZone" />
+     
+    </div>
+
+    <!-- STATUS -->
+    <div class="row">
+      <label>Asset Status</label>
+      <select formControlName="Asset_Status">
+        <option>Active</option>
+        <option>Inactive</option>
+        <option>Maintenance</option>
+      </select>
+    </div>
+
+    <div class="row">
+      <label>Asset Movement</label>
+      <input formControlName="Asset_Movement" placeholder="Movement Status" />
+    </div>
+
+    <!-- FLAGS -->
+    <div class="row grid-4">
+      <label>Is Active</label>
+      <select formControlName="Is_Active_flag">
+        <option>Y</option>
+        <option>N</option>
+      </select>
+      <label>Is Delete</label>
+      <select formControlName="Is_Delete_flag">
+        <option>N</option>
+        <option>Y</option>
+      </select>
+      <label>Is Current Job</label>
+      <select formControlName="IsCurrent_Job">
+        <option>Y</option>
+        <option>N</option>
+      </select>
+      <label>Is Owned Asset</label>
+      <select formControlName="IsOwnedAsset">
+        <option>Y</option>
+        <option>N</option>
+      </select>
+    </div>
+
+    <div class="row">
+      <label>Is DeHired</label>
+      <select formControlName="Is_DeHired">
+        <option>N</option>
+        <option>Y</option>
+      </select>
+    </div>
+
+    <!-- ACTIONS -->
+    <div class="actions">
+      <button class="save" type="button" (click)="save()">Save Asset</button>
+      <button class="cancel" type="button" (click)="cancel()">Cancel</button>
+    </div>
+    
+  </form>
+</div>

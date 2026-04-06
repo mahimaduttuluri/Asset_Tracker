@@ -2,3 +2,4 @@ dotnetapp/obj
 dotnetapp/appsettings.json
 dotnetapp/appsettings.Development.json
 dotnetapp/Properties/launchSettings.json
+dotnetapp/bin
