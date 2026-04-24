@@ -96,13 +96,24 @@
 
       <!-- BOTTOM SUMMARY -->
       <div class="status-summary">
-        <div class="summary-item">
-          <div class="sum-icon active">⚡</div>
-          <div>
-            <div class="sum-label">Active</div>
-            <div class="sum-value">{{ overview().statusSummary.active }}</div>
+        <ng-container *ngIf="overview().statusSummary.active > 0; else activeZero">
+          <div class="summary-item">
+            <div class="sum-icon active">⚡</div>
+            <div>
+              <div class="sum-label">Active</div>
+              <div class="sum-value">{{ overview().statusSummary.active }}</div>
+            </div>
           </div>
-        </div>
+        </ng-container>
+        <ng-template #activeZero>
+          <div class="summary-item">
+            <div class="sum-icon active" style="opacity: 0.3;">⚡</div>
+            <div class="zero-state" style="margin-left: 10px; flex: 1;">
+              <div class="title" style="font-size: 14px;">No Active Assets</div>
+              <div class="subtitle" style="font-size: 12px;">All assets offline across clients</div>
+            </div>
+          </div>
+        </ng-template>
 
         <div class="divider"></div>
 
@@ -136,3 +147,4 @@
 
   </section>
 </div>
+

@@ -39,6 +39,13 @@
 }
 
 /* Icons */
+.nav-item .icon-img {
+  width: 26px;
+  height: 26px;
+  margin-bottom: 6px;
+  object-fit: contain;
+}
+
 .nav-item .icon {
   width: 28px;
   height: 28px;

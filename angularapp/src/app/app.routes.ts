@@ -4,7 +4,7 @@ import { OnboardingComponent } from './onboarding/onboarding';
 import { AssetTypeComponent } from './Pages/asset-type/asset-type.component';
 import { AssetInsightsComponent } from './Pages/asset-insights/asset-insights.component';
 import { SuperAdminDashboardComponent } from './superadmin/dashboard.component';
-
+import { ClientOnboardingComponent } from './superadmin/client-onboarding/client-onboarding.component';
 export const routes: Routes = [
   { path: 'dashboard', component: DashboardComponent },
   { path: 'profile', redirectTo: '/dashboard', pathMatch: 'full' },
@@ -13,8 +13,8 @@ export const routes: Routes = [
   { path: 'asset-insights', loadComponent: () => import('./Pages/asset-insights/asset-insights.component').then(m => m.AssetInsightsComponent) },
   { path: 'live-tracking/:assetId', loadComponent: () => import('./live-tracking/live-tracking').then(m => m.LiveTracking) },
   { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
-  
 { path: 'superadmin/dashboard', component: SuperAdminDashboardComponent },
+ { path: 'superadmin/clients', component: ClientOnboardingComponent },
 
   //{ path: 'superadmin/clients/:clientId', loadComponent: () => import('./client-details/client-details.component').then(m => m.ClientDetailsComponent) },
 
