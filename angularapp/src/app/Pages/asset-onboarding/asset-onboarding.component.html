@@ -20,19 +20,23 @@
 
     <div class="row">
       <label>Asset Name *</label>
-      <input formControlName="Asset_Name" placeholder="Enter Asset Name" />
+<input formControlName="Asset_Name" placeholder="Enter Asset Name" required />
+<div *ngIf="assetForm.get('Asset_Name')?.invalid && assetForm.get('Asset_Name')?.touched" style="color: #e85b45; font-size: 12px; margin-top: 4px;">Asset Name is required</div>
     </div>
 
     <div class="row">
       <label>Asset Code *</label>
-      <input formControlName="Asset_Code" placeholder="Enter Asset Code" />
+<input formControlName="Asset_Code" placeholder="Enter Asset Code" required />
+<div *ngIf="assetForm.get('Asset_Code')?.invalid && assetForm.get('Asset_Code')?.touched" style="color: #e85b45; font-size: 12px; margin-top: 4px;">Asset Code is required</div>
     </div>
 
     <div class="row grid-2">
       <label>Asset Type *</label>
-      <input formControlName="Asset_Type" placeholder="Asset Type" />
+<input formControlName="Asset_Type" placeholder="Asset Type" required />
+<div *ngIf="assetForm.get('Asset_Type')?.invalid && assetForm.get('Asset_Type')?.touched" style="color: #e85b45; font-size: 12px; margin-top: 4px;">Asset Type is required</div>
       <label>Asset Type Key *</label>
-      <input type="number" formControlName="Asset_Type_Key" placeholder="Type Key" />
+<input type="number" formControlName="Asset_Type_Key" placeholder="Type Key" required />
+<div *ngIf="assetForm.get('Asset_Type_Key')?.invalid && assetForm.get('Asset_Type_Key')?.touched" style="color: #e85b45; font-size: 12px; margin-top: 4px;">Asset Type Key is required</div>
     </div>
 
     <div class="row grid-2">
@@ -85,9 +89,11 @@
     <!-- PROJECT & OEM -->
     <div class="row grid-2">
       <label>Project Key *</label>
-      <input type="number" formControlName="Project_Key" placeholder="Project ID" />
+<input type="number" formControlName="Project_Key" placeholder="Project ID" required />
+<div *ngIf="assetForm.get('Project_Key')?.invalid && assetForm.get('Project_Key')?.touched" style="color: #e85b45; font-size: 12px; margin-top: 4px;">Project Key is required</div>
       <label>Section Key *</label>
-      <input type="number" formControlName="Section_Key" placeholder="Section ID" />
+<input type="number" formControlName="Section_Key" placeholder="Section ID" required />
+<div *ngIf="assetForm.get('Section_Key')?.invalid && assetForm.get('Section_Key')?.touched" style="color: #e85b45; font-size: 12px; margin-top: 4px;">Section Key is required</div>
     </div>
 
     <div class="row grid-2">
@@ -165,24 +171,9 @@
       </select>
     </div>
 
-    <!-- RUN IDs & TIMESTAMPS (Admin/Internal) -->
-    <div class="row grid-2">
-      <label>Record Created Run ID</label>
-      <input type="number" formControlName="Record_Created_Run_id" placeholder="Run ID" />
-      <label>Record Modified Run ID</label>
-      <input type="number" formControlName="Record_modified_run_id" placeholder="Run ID" />
-    </div>
-
-    <div class="row grid-2">
-      <label>Record Create Timestamp</label>
-      <input type="datetime-local" formControlName="RecordCreateTimestamp" />
-      <label>Record Modify Timestamp</label>
-      <input type="datetime-local" formControlName="RecordModifyTimestamp" />
-    </div>
-
     <!-- ACTIONS -->
     <div class="actions">
-      <button class="save" type="button" (click)="save()">Save Asset</button>
+      <button class="save" type="button" (click)="save()" [disabled]="assetForm.invalid">Save Asset</button>
       <button class="cancel" type="button" (click)="cancel()">Cancel</button>
     </div>
     

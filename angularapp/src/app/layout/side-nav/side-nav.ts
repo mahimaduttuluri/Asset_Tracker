@@ -11,7 +11,9 @@ import { RouterModule } from '@angular/router';
 })
 export class SideNavComponent {
   isSideNavOpen = true;
+  @Output() isOpenChange = new EventEmitter<boolean>();
   toggleSideNav() {
     this.isSideNavOpen = !this.isSideNavOpen;
+    this.isOpenChange.emit(this.isSideNavOpen);
   }
 }

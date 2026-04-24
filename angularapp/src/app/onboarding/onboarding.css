@@ -108,6 +108,7 @@
   flex: 1;
   padding: 20px;
   overflow-y: auto;
+  transition: margin-left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 /* ===== Tabs - Type 1 ===== */
 

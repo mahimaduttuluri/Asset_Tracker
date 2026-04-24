@@ -6,7 +6,6 @@ import { SuperAdminMockService } from './mock.service';
 import { SuperAdminOverview, ClientSummary } from './dashboard.model';
 import { SuperAdminSideNavComponent } from './sidenav/superadmin-sidenav.component';
 
-
 @Component({
   selector: 'app-superadmin-dashboard',
   standalone: true,
@@ -66,6 +65,10 @@ export class SuperAdminDashboardComponent implements OnInit {
 
   openUserDetailsReport() {
     this.router.navigate(['/superadmin/reports/user-details']);
+  }
+
+  goToMainDashboard() {
+    this.router.navigate(['/dashboard']);
   }
 
   trackByClientId(_: number, item: ClientSummary) {

@@ -1,6 +1,3 @@
-
-<!-- Menu icon shown only when sidenav is closed -->
-
 <div class="page">
 <!-- SIDE NAV -->
   <!-- Menu button always visible when nav closed -->
@@ -37,12 +34,6 @@
         </div>
 
         <div class="tabs">
-          <button class="tab"
-                  [class.active]="activeTab() === 'clients'"
-                  (click)="activeTab.set('clients')">
-            Clients
-          </button>
-
           <button class="tab"
                   [class.active]="activeTab() === 'reports'"
                   (click)="activeTab.set('reports')">
@@ -81,7 +72,7 @@
       <div class="clients-grid" *ngIf="hasClients(); else noData">
         <div class="client-card"
              *ngFor="let c of overview().clients; trackBy: trackByClientId"
-             (click)="openClientDetails(c)">
+             (click)="goToMainDashboard()">
           <div class="client-header">
             <div class="client-logo">⚡</div>
             <div>

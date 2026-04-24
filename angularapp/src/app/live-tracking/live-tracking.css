@@ -1,0 +1,101 @@
+/* Page layout */
+.page {
+  display: flex;
+  min-height: 100vh;
+  background: var(--bg-app);
+}
+
+/* Main content area (shifted by inline ngStyle margin-left) */
+.content {
+  flex: 1;
+  padding: 22px;
+  overflow: hidden; /* prevents horizontal scroll when map pans */
+}
+
+/* Header */
+.header {
+  margin-bottom: 12px;
+}
+
+.header h1 {
+  margin: 0;
+  color: var(--text-primary);
+  font-size: 22px;
+  font-weight: 700;
+}
+
+/* Layout for stats + map */
+.live-tracking-container {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: 20px;
+  align-items: start;
+  margin-top: 14px;
+}
+
+/* Stats panel */
+.stats-panel {
+  background: var(--bg-card);
+  padding: 18px;
+  border-radius: 12px;
+  border: 1px solid var(--border-default);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+.stats-panel h2 {
+  margin: 0 0 14px 0;
+  color: var(--text-primary);
+  font-size: 16px;
+}
+
+.stats-panel p {
+  margin: 10px 0;
+  color: var(--text-secondary);
+  font-size: 14px;
+}
+
+/* Button */
+.refresh-btn {
+  width: 100%;
+  margin-top: 12px;
+  padding: 12px;
+  background: var(--primary-blue);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.refresh-btn:hover {
+  background: #2563eb;
+}
+
+/* ✅ Map container FIXES */
+.map-container {
+  width: 100%;
+  height: 520px;          /* good size like your screenshot */
+  min-height: 520px;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid var(--border-default);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+/* ✅ Leaflet needs its internal container to fill */
+.map-container .leaflet-container {
+  width: 100%;
+  height: 100%;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .live-tracking-container {
+    grid-template-columns: 1fr;
+  }
+  .map-container {
+    height: 420px;
+    min-height: 420px;
+  }
+}

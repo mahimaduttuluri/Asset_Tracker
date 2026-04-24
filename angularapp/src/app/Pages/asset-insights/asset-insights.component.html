@@ -1,196 +1,81 @@
 <div class="page">
-  <!-- Header -->
-  <div class="header">
-    <h1>Asset Status</h1>
+  <app-side-nav (isOpenChange)="isSideNavOpen = $event"></app-side-nav>
 
-    <div class="search">
-      <input
-        type="text"
-        placeholder="Search asset id, name or status"
-        [ngModel]="search()"
-        (ngModelChange)="search.set($event)"
-      />
-    </div>
-  </div>
+  <div class="content" [ngStyle]="{ 'margin-left.px': isSideNavOpen ? 150 : 20 }">
 
-  <!-- Controls -->
-  <div class="controls">
-    <h3>Site Assets ({{ siteCount() }})</h3>
-
-    <div class="segmented">
-      <button (click)="ownership.set('All')" [class.active]="ownership()==='All'">All</button>
-      <button (click)="ownership.set('Hired')" [class.active]="ownership()==='Hired'">Hired</button>
-      <button (click)="ownership.set('Owned')" [class.active]="ownership()==='Owned'">Owned</button>
+    <!-- HEADER -->
+    <div class="header">
+      <h1>Asset Insights</h1>
     </div>
 
-    <label class="toggle">
-      <span>Only Critical</span>
-      <input
-        type="checkbox"
-        [checked]="onlyCritical()"
-        (change)="onlyCritical.set(!onlyCritical())"
-      />
-      <span class="slider"></span>
-    </label>
-  </div>
+    <!-- FILTER BAR -->
+    <div class="filter-bar">
 
-  <!-- Cards -->
-  <div class="grid">
-    <div
-      class="card"
-      *ngFor="let a of filteredAssets()"
-      [class.critical-card]="a.critical"
-    >
-      <div class="card-top">
-        <!-- Replace emoji with your PNG -->
-        <div class="icon">
-          <img
-            src="assets/batching-plant.png"
-            alt="Batching plant"
-            loading="lazy"
-          />
-        </div>
+      <!-- Site Filter -->
+      <select [(ngModel)]="selectedSite">
+        <option *ngFor="let site of sites" [value]="site">
+          {{ site }}
+        </option>
+      </select>
 
-        <div class="actions">
-          <button type="button" (click)="toggleStar(a)" [class.on]="a.starred" aria-label="Star asset">★</button>
-          <button type="button" (click)="togglePin(a)" [class.on]="a.pinned" aria-label="Pin asset">📌</button>
-        </div>
-      </div>
+      <!-- Asset Type Filter -->
+      <select [(ngModel)]="selectedAssetType">
+        <option *ngFor="let type of assetTypes" [value]="type">
+          {{ type }}
+        </option>
+      </select>
 
-      <div class="card-body">
-        <div class="meta">
-          <span class="id">{{ a.id }}</span>
-
-          <span
-            class="pill"
-            [ngClass]="statusClass(a.status)"
-            [class.critical]="a.critical"
-          >
-            {{ a.status }}
-          </span>
-        </div>
-
-        <h4>{{ a.name }}</h4>
-
-        <div class="metrics">
-          <div><span>Avg Utilisation</span><b>{{ a.avgUtilisationPct }}%</b></div>
-          <div><span>Avg Productivity</span><b>{{ a.avgProductivityPct }}%</b></div>
-          <div><span>Idle Hours</span><b>{{ a.idleHours }} hrs</b></div>
-        </div>
-      </div>
-
-      <div class="card-footer">
-        <button class="details" type="button" (click)="openDrawer(a)">
-          View details <span class="go">→</span>
+      <!-- VIEW TOGGLE -->
+      <div class="view-toggle">
+        <button
+          [class.active]="viewMode === 'card'"
+          (click)="viewMode = 'card'"
+        >
+          Card View
         </button>
-      </div>
-    </div>
-  </div>
 
-  <!-- ===== Right-side Drawer (always in DOM for smooth transition) ===== -->
-  <div
-    class="drawer-backdrop"
-    [class.show]="drawerOpen()"
-    (click)="closeDrawer()"
-    aria-hidden="true"
-  ></div>
-
-  <aside
-    class="drawer"
-    [class.open]="drawerOpen()"
-    role="dialog"
-    aria-modal="true"
-    [attr.aria-hidden]="!drawerOpen()"
-    aria-label="Asset details"
-  >
-    <ng-container *ngIf="selectedAsset() as a">
-      <div class="drawer-header">
-        <div class="drawer-title">
-          <div class="drawer-icon">
-            <img src="assets/batching-plant.png" alt="Batching plant" />
-          </div>
-          <div>
-            <div class="drawer-asset-name">{{ a.name }}</div>
-            <div class="drawer-asset-sub">
-              <span class="muted">{{ a.id }}</span>
-              <span class="dot">•</span>
-              <span class="muted">{{ a.ownership }}</span>
-              <span class="dot">•</span>
-              <span class="muted">{{ a.location || '—' }}</span>
-            </div>
-          </div>
-        </div>
-
-        <button class="drawer-close" type="button" (click)="closeDrawer()" aria-label="Close drawer">
-          ✕
+        <button
+          [class.active]="viewMode === 'table'"
+          (click)="viewMode = 'table'"
+        >
+          Table View
         </button>
       </div>
 
-      <div class="drawer-body">
-        <div class="drawer-row">
-          <span
-            class="pill big"
-            [ngClass]="statusClass(a.status)"
-            [class.critical]="a.critical"
-          >
-            {{ a.status }}
-          </span>
+    </div>
 
-          <span class="chip" *ngIf="a.critical">Critical</span>
-          <span class="chip subtle">Last reported: {{ a.lastReported || '—' }}</span>
-        </div>
-
-        <div class="section">
-          <div class="section-title">Performance</div>
-
-          <div class="kpi">
-            <div class="kpi-top">
-              <span>Avg Utilisation</span>
-              <b>{{ clampPct(a.avgUtilisationPct) }}%</b>
-            </div>
-            <div class="bar">
-              <div class="fill util" [style.width.%]="clampPct(a.avgUtilisationPct)"></div>
-            </div>
-          </div>
-
-          <div class="kpi">
-            <div class="kpi-top">
-              <span>Avg Productivity</span>
-              <b>{{ clampPct(a.avgProductivityPct) }}%</b>
-            </div>
-            <div class="bar">
-              <div class="fill prod" [style.width.%]="clampPct(a.avgProductivityPct)"></div>
-            </div>
-          </div>
-
-          <div class="kpi">
-            <div class="kpi-top">
-              <span>Idle Hours</span>
-              <b>{{ a.idleHours }} hrs</b>
-            </div>
-            <div class="bar thin">
-              <!-- map idle hours to a 0-100 scale just for visualization -->
-              <div class="fill idle" [style.width.%]="clampPct(a.idleHours * 8)"></div>
-            </div>
-            <div class="hint muted">Tip: Higher idle bar indicates more idle time.</div>
-          </div>
-        </div>
-
-        <div class="section">
-          <div class="section-title">Quick actions</div>
-          <div class="drawer-actions">
-            <button type="button" class="btn" (click)="toggleStar(a)">
-              {{ a.starred ? 'Unstar' : 'Star' }}
-            </button>
-            <button type="button" class="btn" (click)="togglePin(a)">
-              {{ a.pinned ? 'Unpin' : 'Pin' }}
-            </button>
-            <button type="button" class="btn primary" (click)="closeDrawer()">
-              Done
-            </button>
-          </div>
-        </div>
+    <!-- CARD VIEW -->
+    <div class="card-grid" *ngIf="viewMode === 'card'">
+      <div class="asset-card" *ngFor="let asset of filteredAssets">
+        <h3>{{ asset.id }}</h3>
+        <p>Site: {{ asset.site }}</p>
+        <p>Type: {{ asset.type }}</p>
+<p>Status: {{ asset.status }}</p>
+        <button class="track-live-btn" (click)="trackLive(asset)">Track Live</button>
       </div>
-    </ng-container>
-  </aside>
+    </div>
+
+    <!-- TABLE VIEW -->
+    <table class="asset-table" *ngIf="viewMode === 'table'">
+      <thead>
+        <tr>
+          <th>Asset ID</th>
+          <th>Site</th>
+          <th>Type</th>
+          <th>Status</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let asset of filteredAssets">
+          <td>{{ asset.id }}</td>
+          <td>{{ asset.site }}</td>
+          <td>{{ asset.type }}</td>
+          <td>{{ asset.status }}</td>
+          <td><button class="track-live-btn" (click)="trackLive(asset)">Track Live</button></td>
+        </tr>
+      </tbody>
+    </table>
+
+  </div>
 </div>
