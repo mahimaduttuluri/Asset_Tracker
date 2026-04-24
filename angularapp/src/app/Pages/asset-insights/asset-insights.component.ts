@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
 import { SideNavComponent } from '../../layout/side-nav/side-nav';
 
 @Component({
@@ -11,6 +12,7 @@ import { SideNavComponent } from '../../layout/side-nav/side-nav';
   styleUrls: ['./asset-insights.component.css'],
 })
 export class AssetInsightsComponent {
+  constructor(private router: Router) {}
 
   isSideNavOpen = true;
 
@@ -38,5 +40,9 @@ export class AssetInsightsComponent {
       (this.selectedSite === 'All' || asset.site === this.selectedSite) &&
       (this.selectedAssetType === 'All' || asset.type === this.selectedAssetType)
     );
+  }
+
+  trackLive(asset: any) {
+    this.router.navigate(['/live-tracking', asset.id]);
   }
 }

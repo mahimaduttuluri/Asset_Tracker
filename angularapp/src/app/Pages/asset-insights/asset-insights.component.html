@@ -50,7 +50,8 @@
         <h3>{{ asset.id }}</h3>
         <p>Site: {{ asset.site }}</p>
         <p>Type: {{ asset.type }}</p>
-        <p>Status: {{ asset.status }}</p>
+<p>Status: {{ asset.status }}</p>
+        <button class="track-live-btn" (click)="trackLive(asset)">Track Live</button>
       </div>
     </div>
 
@@ -62,6 +63,7 @@
           <th>Site</th>
           <th>Type</th>
           <th>Status</th>
+          <th>Actions</th>
         </tr>
       </thead>
       <tbody>
@@ -70,6 +72,7 @@
           <td>{{ asset.site }}</td>
           <td>{{ asset.type }}</td>
           <td>{{ asset.status }}</td>
+          <td><button class="track-live-btn" (click)="trackLive(asset)">Track Live</button></td>
         </tr>
       </tbody>
     </table>

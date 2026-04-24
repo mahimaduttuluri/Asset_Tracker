@@ -1,0 +1,27 @@
+<div class="page" *ngIf="!assetId">
+  <p>Loading...</p>
+</div>
+
+<div class="page" *ngIf="assetId">
+  <app-side-nav (isOpenChange)="isSideNavOpen = $event"></app-side-nav>
+
+  <div
+    class="content"
+    [ngStyle]="{ 'margin-left.px': isSideNavOpen ? 150 : 20 }"
+  >
+    <div class="header">
+      <h1>Live Tracking - {{ assetId }}</h1>
+    </div>
+
+    <div class="live-tracking-container">
+      <div class="stats-panel">
+        <h2>Current Status</h2>
+        <p><strong>Speed:</strong> {{ currentSpeed | number:'1.1-1' }} km/h</p>
+        <p><strong>GPS:</strong> {{ currentLat | number:'1.4-4' }}, {{ currentLng | number:'1.4-4' }}</p>
+        <button class="refresh-btn" (click)="updateMap()">Refresh Map</button>
+      </div>
+
+      <div id="map" class="map-container"></div>
+    </div>
+  </div>
+</div>

@@ -11,6 +11,7 @@ export const routes: Routes = [
   { path: 'onboarding', component: OnboardingComponent },
 { path: 'asset-types', component: AssetTypeComponent },
   { path: 'asset-insights', loadComponent: () => import('./Pages/asset-insights/asset-insights.component').then(m => m.AssetInsightsComponent) },
+  { path: 'live-tracking/:assetId', loadComponent: () => import('./live-tracking/live-tracking').then(m => m.LiveTracking) },
   { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
   
 { path: 'superadmin/dashboard', component: SuperAdminDashboardComponent },

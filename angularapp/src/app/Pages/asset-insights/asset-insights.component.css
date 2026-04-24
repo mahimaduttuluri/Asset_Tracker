@@ -140,6 +140,31 @@
   background: rgba(255, 255, 255, 0.5);
 }
 
+.track-live-btn {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 8px;
+  background: #10b981;
+  color: white;
+  font-weight: 500;
+  font-family: 'Rubik', sans-serif;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  width: 100%;
+  margin-top: 8px;
+}
+
+.track-live-btn:hover {
+  background: #059669;
+  transform: translateY(-1px);
+}
+
+.asset-table .track-live-btn {
+  width: auto;
+  margin-top: 0;
+  padding: 10px 16px;
+}
+
 /* Status styling - CSS only approximation */
 .asset-table td:has-text("Active"),
 .asset-card p:has-text("Active") {

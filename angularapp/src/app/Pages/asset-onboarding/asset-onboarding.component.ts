@@ -47,7 +47,7 @@ export class AssetOnboardingComponent {
       Asset_ID: [''],
       Asset_Name: ['', Validators.required],
       Asset_Code: ['', Validators.required],
-      Asset_Type: [''],
+Asset_Type: ['', Validators.required],
       Asset_Type_Key: [null, Validators.required],
       Asset_Fuel_Type: [''],
       Asset_Device_Type: [''],

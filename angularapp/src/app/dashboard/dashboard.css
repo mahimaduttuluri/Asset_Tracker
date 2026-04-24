@@ -246,10 +246,6 @@
   transition: background 0.2s ease;
 }
 
-.primary-btn:hover {
-  background: #1565c0;
-}
-
 /* =====================================================
    SHARED THEME SAFETY
 ===================================================== */
