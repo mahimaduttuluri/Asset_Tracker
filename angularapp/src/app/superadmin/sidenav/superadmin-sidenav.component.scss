@@ -40,9 +40,11 @@
   color: var(--text-nav-muted);
 }
 
-.nav-item .icon {
-  font-size: 26px;
+.nav-item .icon-img {
+  width: 26px;
+  height: 26px;
   margin-bottom: 6px;
+  object-fit: contain;
 }
 
 a {
