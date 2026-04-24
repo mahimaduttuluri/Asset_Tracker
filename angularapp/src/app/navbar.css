@@ -18,12 +18,13 @@
 .brand {
   display: flex;
   align-items: center;
-  gap: 12px;
+  justify-content: center;
 }
 
 .brand-icon {
-  font-size: 28px;
-  color: var(--primary-yellow);
+  width: 180px;
+  height: 180px;
+  object-fit: contain;
 }
 
 .brand-title {
