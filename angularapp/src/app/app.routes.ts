@@ -15,6 +15,14 @@ export const routes: Routes = [
   { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
 { path: 'superadmin/dashboard', component: SuperAdminDashboardComponent },
  { path: 'superadmin/clients', component: ClientOnboardingComponent },
+  {
+    path: '',
+    loadComponent: () => import('./login/login').then(m => m.LoginComponent)
+  },
+  {
+    path: 'login',
+    loadComponent: () => import('./login/login').then(m => m.LoginComponent)
+  }
 
   //{ path: 'superadmin/clients/:clientId', loadComponent: () => import('./client-details/client-details.component').then(m => m.ClientDetailsComponent) },
 
